@@ -8,7 +8,7 @@ import lombok.Data;
 public class Cartao {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String numeroCartao;
     private String validade;
     private String nome;
