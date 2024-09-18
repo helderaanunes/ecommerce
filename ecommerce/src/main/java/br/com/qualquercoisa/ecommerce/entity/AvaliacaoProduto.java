@@ -2,7 +2,6 @@ package br.com.qualquercoisa.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
 @Entity
 @Data
 public class AvaliacaoProduto {
