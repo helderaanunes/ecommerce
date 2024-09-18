@@ -1,10 +1,10 @@
 package br.com.qualquercoisa.ecommerce.repository;
 
-import br.com.qualquercoisa.ecommerce.entity.Categoria;
+import br.com.qualquercoisa.ecommerce.entity.ImagemProduto;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoriaRepository  extends CrudRepository<Categoria, Long> {
 
+public interface ImagemProdutoRepository extends CrudRepository<ImagemProduto, Long> {
 }
