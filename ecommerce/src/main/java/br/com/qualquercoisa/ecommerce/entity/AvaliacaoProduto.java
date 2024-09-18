@@ -10,7 +10,7 @@ public class AvaliacaoProduto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private ItemVenda itenVenda;
+    private ItemVenda itemVenda;
     private int nota;
     private String descricao;
 }
