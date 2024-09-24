@@ -1,9 +1,6 @@
 package br.com.qualquercoisa.ecommerce.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -12,8 +9,10 @@ public class Entrega {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private ItemVenda itemVenda ;
-    private Float quantidade;
+    private float quantidade;
+    @ManyToOne
     private Transportadora transportadora;
     private String codigoRastreio;
 

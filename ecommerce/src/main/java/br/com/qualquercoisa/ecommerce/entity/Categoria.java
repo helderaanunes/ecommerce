@@ -3,6 +3,8 @@ package br.com.qualquercoisa.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Categoria {

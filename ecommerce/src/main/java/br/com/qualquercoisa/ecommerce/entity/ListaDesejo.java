@@ -9,6 +9,7 @@ public class ListaDesejo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private Cliente cliente;
     @ManyToOne
     private Produto produto;
