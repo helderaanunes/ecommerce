@@ -13,7 +13,7 @@ public class Entrega {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private ItemVenda itemVenda ;
-    private float quantidade;
+    private Float quantidade;
     private Transportadora transportadora;
     private String codigoRastreio;
 
