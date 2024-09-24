@@ -15,6 +15,6 @@ public class ItemVenda {
     private ProdutoEstoque produtoEstoque;
     @ManyToOne
     private Entrega entrega;
-    @ManyToOne
-    private Venda venda;
+//    @ManyToOne
+//    private Venda venda;
 }

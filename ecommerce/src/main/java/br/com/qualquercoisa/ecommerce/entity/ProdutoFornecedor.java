@@ -9,8 +9,8 @@ public class ProdutoFornecedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private Fornecedor fornecedor;
+//    @ManyToOne
+//    private Fornecedor fornecedor;
     @ManyToOne
     private Produto produto;
     private Float precoProduto;

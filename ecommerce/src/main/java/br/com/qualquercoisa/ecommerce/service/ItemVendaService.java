@@ -26,20 +26,20 @@ public class ItemVendaService {
         return itemVendaRepository.save(itemVenda);
     }
 
-    public ItemVenda atualizar(Long id, ItemVenda itemVendaAtualizado) {
-        Optional<ItemVenda> itemVendaExistente = itemVendaRepository.findById(id);
-        if (itemVendaExistente.isPresent()) {
-            ItemVenda itemVenda = itemVendaExistente.get();
-            itemVenda.setQuantidade(itemVendaAtualizado.getQuantidade());
-            itemVenda.setPrecoUnitario(itemVendaAtualizado.getPrecoUnitario());
-            itemVenda.setProdutoEstoque(itemVendaAtualizado.getProdutoEstoque());
-            itemVenda.setEntrega(itemVendaAtualizado.getEntrega());
-            itemVenda.setVenda(itemVendaAtualizado.getVenda());
-            return itemVendaRepository.save(itemVenda);
-        } else {
-            throw new RuntimeException("Item de Venda não encontrado com o ID: " + id);
-        }
-    }
+//    public ItemVenda atualizar(Long id, ItemVenda itemVendaAtualizado) {
+//        Optional<ItemVenda> itemVendaExistente = itemVendaRepository.findById(id);
+//        if (itemVendaExistente.isPresent()) {
+//            ItemVenda itemVenda = itemVendaExistente.get();
+//            itemVenda.setQuantidade(itemVendaAtualizado.getQuantidade());
+//            itemVenda.setPrecoUnitario(itemVendaAtualizado.getPrecoUnitario());
+//            itemVenda.setProdutoEstoque(itemVendaAtualizado.getProdutoEstoque());
+//            itemVenda.setEntrega(itemVendaAtualizado.getEntrega());
+//            itemVenda.setVenda(itemVendaAtualizado.getVenda());
+//            return itemVendaRepository.save(itemVenda);
+//        } else {
+//            throw new RuntimeException("Item de Venda não encontrado com o ID: " + id);
+//        }
+//    }
 
     public void deletar(Long id) {
         itemVendaRepository.deleteById(id);

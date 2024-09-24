@@ -26,18 +26,18 @@ public class ProdutoFornecedorService {
         return produtoFornecedorRepository.save(produtoFornecedor);
     }
 
-    public ProdutoFornecedor atualizar(Long id, ProdutoFornecedor produtoFornecedorAtualizado) {
-        Optional<ProdutoFornecedor> produtoFornecedorExistente = produtoFornecedorRepository.findById(id);
-        if (produtoFornecedorExistente.isPresent()) {
-            ProdutoFornecedor produtoFornecedor = produtoFornecedorExistente.get();
-            produtoFornecedor.setFornecedor(produtoFornecedorAtualizado.getFornecedor());
-            produtoFornecedor.setProduto(produtoFornecedorAtualizado.getProduto());
-            produtoFornecedor.setPrecoProduto(produtoFornecedorAtualizado.getPrecoProduto());
-            return produtoFornecedorRepository.save(produtoFornecedor);
-        } else {
-            throw new RuntimeException("Produto de Fornecedor não encontrado com o ID: " + id);
-        }
-    }
+//    public ProdutoFornecedor atualizar(Long id, ProdutoFornecedor produtoFornecedorAtualizado) {
+//        Optional<ProdutoFornecedor> produtoFornecedorExistente = produtoFornecedorRepository.findById(id);
+//        if (produtoFornecedorExistente.isPresent()) {
+//            ProdutoFornecedor produtoFornecedor = produtoFornecedorExistente.get();
+//            produtoFornecedor.setFornecedor(produtoFornecedorAtualizado.getFornecedor());
+//            produtoFornecedor.setProduto(produtoFornecedorAtualizado.getProduto());
+//            produtoFornecedor.setPrecoProduto(produtoFornecedorAtualizado.getPrecoProduto());
+//            return produtoFornecedorRepository.save(produtoFornecedor);
+//        } else {
+//            throw new RuntimeException("Produto de Fornecedor não encontrado com o ID: " + id);
+//        }
+//    }
 
     public void deletar(Long id) {
         produtoFornecedorRepository.deleteById(id);

@@ -17,8 +17,8 @@ public class FluxoFinanceiro {
     private Float valor;
     private String descricao;
     private String fluxo;
-    @ManyToOne
-    private Venda venda;
+//    @ManyToOne
+//    private Venda venda;
 
 
 }
