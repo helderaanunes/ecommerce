@@ -17,9 +17,9 @@ public class PermissaoController {
     @Autowired
     private PermissaoService permissaoService;
 
-    @PostMapping("/permissao")
-    public ResponseEntity<Permissao> salvar(@RequestBody Permissao permissao){
-        return PermissaoService.salvar(permissao);
-    }
+//    @PostMapping("/permissao")
+//    public ResponseEntity<Permissao> salvar(@RequestBody Permissao permissao){
+//        return PermissaoService.salvar(permissao);
+//    }
 
 }
