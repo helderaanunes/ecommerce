@@ -11,7 +11,7 @@ public class ProdutoEstoque {
     private Long id;
     @ManyToOne
     private Produto produto;
-    private Float preco;
+    private float preco;
     @ManyToOne
     private Estoque estoque;
 }

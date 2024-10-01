@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class Permissao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
     private Long id;
     private String nome;
 

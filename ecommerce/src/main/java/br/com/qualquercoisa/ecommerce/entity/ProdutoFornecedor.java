@@ -13,5 +13,5 @@ public class ProdutoFornecedor {
 //    private Fornecedor fornecedor;
     @ManyToOne
     private Produto produto;
-    private Float precoProduto;
+    private float precoProduto;
 }
