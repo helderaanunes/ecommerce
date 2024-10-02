@@ -13,17 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public class EstoqueService {
 
-//    @Autowired
-//    private EstoqueRepository estoqueRepository;
-//
-//
-//    public ResponseEntity<Estoque> salvar (Estoque estoque) {
-//        Estoque estoqueJaSalva = estoqueRepository.save(estoque);
-//        return new ResponseEntity<Estoque>(estoqueJaSalva, HttpStatus.OK);
-//
-//
-//
-//    }
+   @Autowired
+   private EstoqueRepository estoqueRepository;
+
+
+   public ResponseEntity<Estoque> salvar (Estoque estoque) {
+      Estoque estoqueJaSalva = estoqueRepository.save(estoque);
+      return new ResponseEntity<Estoque>(estoqueJaSalva, HttpStatus.OK);
+
+
+   }
 
 
 
