@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-public class itemVendaController {
+public class ItemVendaController {
 
     @Autowired
     private ItemVendaService itemVendaService;
