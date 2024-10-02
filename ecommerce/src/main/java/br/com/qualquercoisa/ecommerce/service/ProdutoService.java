@@ -1,6 +1,8 @@
 package br.com.qualquercoisa.ecommerce.service;
 
+import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.entity.Produto;
+import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
 import br.com.qualquercoisa.ecommerce.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,9 +15,20 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public ResponseEntity<Produto> salvar (@RequestBody Produto produto){
-        Produto produtoJaSalva = produtoRepository.save(produto);
-        return new ResponseEntity<Produto>(produtoJaSalva, HttpStatus.OK);
+    public Iterable<Produto> listarTodos (){
+        return produtoRepository.findAll();
+    }
 
+    public ResponseEntity<Produto> salvar (Produto produto){
+        return new ResponseEntity<Produto>(produtoRepository.save(produto), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Produto> buscarPorId(Long id) {
+        return new ResponseEntity<Produto>(produtoRepository.findById(id).orElseThrow(),HttpStatus.OK);
+    }
+
+    public ResponseEntity deletar(Long id) {
+        produtoRepository.deleteById(id);
+        return new ResponseEntity("{\"mensagem\":\"Removido com sucesso\"}",HttpStatus.OK);
     }
 }
