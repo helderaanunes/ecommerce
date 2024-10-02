@@ -31,6 +31,6 @@ public class FluxoFinanceiroService {
         fluxoFinanceiroRepository.deleteById(id);
         return new ResponseEntity("{\"mensagem\":\"Removido com sucesso\"}",HttpStatus.OK);
     }
-    
+
 
 }
