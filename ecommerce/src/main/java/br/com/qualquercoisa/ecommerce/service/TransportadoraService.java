@@ -1,5 +1,6 @@
 package br.com.qualquercoisa.ecommerce.service;
 
+import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.entity.Transportadora;
 import br.com.qualquercoisa.ecommerce.repository.TransportadoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,27 +17,20 @@ public class TransportadoraService {
     @Autowired
     private TransportadoraRepository transportadoraRepository;
 
-    public List<Transportadora> listarTodas() {
-
-        return (List<Transportadora>) transportadoraRepository.findAll();
+    public Iterable<Transportadora> listarTodos (){
+        return transportadoraRepository.findAll();
     }
 
-    public Optional<Transportadora> buscarPorId(Long id) {
-
-        return transportadoraRepository.findById(id);
-    }
-
-    public ResponseEntity<Transportadora> salvar(Transportadora transportadora) {
-
+    public ResponseEntity<Transportadora> salvar (Transportadora transportadora){
         return new ResponseEntity<Transportadora>(transportadoraRepository.save(transportadora), HttpStatus.OK);
     }
 
-//    public Transportadora atualizar(Long id, Transportadora transportadoraAtualizada) {
-//        transportadoraAtualizada.setId(id);
-//        transportadoraRepository.save(transportadoraAtualizada);
-//    }
+    public ResponseEntity<Transportadora> buscarPorId(Long id) {
+        return new ResponseEntity<Transportadora>(transportadoraRepository.findById(id).orElseThrow(), HttpStatus.OK);
+    }
 
-    public void deletar(Long id) {
+    public ResponseEntity deletar(Long id) {
         transportadoraRepository.deleteById(id);
+        return new ResponseEntity("{\"mensagem\":\"Removido com sucesso\"}", HttpStatus.OK);
     }
 }
