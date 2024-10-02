@@ -1,5 +1,6 @@
 package br.com.qualquercoisa.ecommerce.service;
 
+import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.entity.HistoricoEntrega;
 import br.com.qualquercoisa.ecommerce.repository.HistoricoEntregaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,20 @@ public class HistoricoEntregaService {
     private HistoricoEntregaRepository historicoEntregaRepository;
 
     public ResponseEntity<HistoricoEntrega> salvar(HistoricoEntrega historicoEntrega) {
-        HistoricoEntrega historicoEntregaJaSalva = historicoEntregaRepository.save(historicoEntrega);
-        return new ResponseEntity<HistoricoEntrega>(historicoEntregaJaSalva, HttpStatus.OK);
+        return new ResponseEntity<HistoricoEntrega>(historicoEntregaRepository.save(historicoEntrega), HttpStatus.OK);
+    }
+
+    //////
+    public Iterable<HistoricoEntrega> listarTodos() {
+        return historicoEntregaRepository.findAll();
+    }
+
+    public ResponseEntity<HistoricoEntrega> buscarPorId(Long id) {
+        return new ResponseEntity<HistoricoEntrega>(historicoEntregaRepository.findById(id).orElseThrow(),HttpStatus.OK);
+    }
+
+    public ResponseEntity deletar(Long id) {
+        historicoEntregaRepository.deleteById(id);
+        return new ResponseEntity("{\"mensagem\":\"Removido com sucesso\"}",HttpStatus.OK);
     }
 }
