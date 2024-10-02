@@ -31,10 +31,10 @@ public class TransportadoraService {
         return new ResponseEntity<Transportadora>(transportadoraRepository.save(transportadora), HttpStatus.OK);
     }
 
-    public Transportadora atualizar(Long id, Transportadora transportadoraAtualizada) {
-        transportadoraAtualizada.setId(id);
-        transportadoraRepository.save(transportadoraAtualizada);
-    }
+//    public Transportadora atualizar(Long id, Transportadora transportadoraAtualizada) {
+//        transportadoraAtualizada.setId(id);
+//        transportadoraRepository.save(transportadoraAtualizada);
+//    }
 
     public void deletar(Long id) {
         transportadoraRepository.deleteById(id);
