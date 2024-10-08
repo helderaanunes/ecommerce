@@ -9,10 +9,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CartaoService {
+
     @Autowired
     private CartaoRepository cartaoRepository;
 
-    public ResponseEntity<Cartao> salvar(Cartao cartao){
-        return new ResponseEntity<Cartao>(cartaoRepository.save(cartao), HttpStatus.OK);
+    public Iterable<Cartao> listarTodos() {
+        return cartaoRepository.findAll();
+    }
+
+    public ResponseEntity<Cartao> salvar(Cartao cartao) {
+        return new ResponseEntity<>(cartaoRepository.save(cartao), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Cartao> buscarPorId(Long id) {
+        return new ResponseEntity<>(cartaoRepository.findById(id).orElseThrow(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> deletar(Long id) {
+        cartaoRepository.deleteById(id);
+        return new ResponseEntity<>("{\"mensagem\":\"Removido com sucesso\"}", HttpStatus.OK);
     }
 }
