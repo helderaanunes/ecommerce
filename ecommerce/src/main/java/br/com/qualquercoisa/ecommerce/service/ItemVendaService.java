@@ -3,6 +3,8 @@ package br.com.qualquercoisa.ecommerce.service;
 import br.com.qualquercoisa.ecommerce.entity.ItemVenda;
 import br.com.qualquercoisa.ecommerce.repository.ItemVendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,22 +28,23 @@ public class ItemVendaService {
         return itemVendaRepository.save(itemVenda);
     }
 
-//    public ItemVenda atualizar(Long id, ItemVenda itemVendaAtualizado) {
-//        Optional<ItemVenda> itemVendaExistente = itemVendaRepository.findById(id);
-//        if (itemVendaExistente.isPresent()) {
-//            ItemVenda itemVenda = itemVendaExistente.get();
-//            itemVenda.setQuantidade(itemVendaAtualizado.getQuantidade());
-//            itemVenda.setPrecoUnitario(itemVendaAtualizado.getPrecoUnitario());
-//            itemVenda.setProdutoEstoque(itemVendaAtualizado.getProdutoEstoque());
-//            itemVenda.setEntrega(itemVendaAtualizado.getEntrega());
-//            itemVenda.setVenda(itemVendaAtualizado.getVenda());
-//            return itemVendaRepository.save(itemVenda);
-//        } else {
-//            throw new RuntimeException("Item de Venda não encontrado com o ID: " + id);
-//        }
-//    }
+    public ItemVenda atualizar(Long id, ItemVenda itemVendaAtualizado) {
+        Optional<ItemVenda> itemVendaExistente = itemVendaRepository.findById(id);
+        if (itemVendaExistente.isPresent()) {
+            ItemVenda itemVenda = itemVendaExistente.get();
+            itemVenda.setQuantidade(itemVendaAtualizado.getQuantidade());
+            itemVenda.setPrecoUnitario(itemVendaAtualizado.getPrecoUnitario());
+            itemVenda.setProdutoEstoque(itemVendaAtualizado.getProdutoEstoque());
+            itemVenda.setEntrega(itemVendaAtualizado.getEntrega());
+            itemVenda.setVenda(itemVendaAtualizado.getVenda());
+            return itemVendaRepository.save(itemVenda);
+        } else {
+            throw new RuntimeException("Item de Venda não encontrado com o ID: " + id);
+        }
+    }
 
-    public void deletar(Long id) {
+    public ResponseEntity deletar(Long id) {
         itemVendaRepository.deleteById(id);
+        return new ResponseEntity("{\"mensagem\":\"Removido com sucesso\"}", HttpStatus.OK);
     }
 }
