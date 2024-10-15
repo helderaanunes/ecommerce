@@ -1,8 +1,10 @@
 package br.com.qualquercoisa.ecommerce.controller;
 
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
+import br.com.qualquercoisa.ecommerce.entity.Venda;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
 import br.com.qualquercoisa.ecommerce.service.CategoriaService;
+import br.com.qualquercoisa.ecommerce.service.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,7 @@ public class VendaController {
     private VendaService vendaService;
 
     @PostMapping("/venda")
-    public ResponseEntity<Venda> salvar(@REquestBody Venda venda){
+    public ResponseEntity<Venda> salvar(@RequestBody Venda venda){
         return  vendaService.salvar(venda);
     }
 

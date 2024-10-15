@@ -31,7 +31,7 @@ public class ProdutoController {
         return produtoService.buscarPorId(id);
     }
 
-    @DeleteMapping("/categoria/{id}")
+    @DeleteMapping("/produto/{id}")
     public ResponseEntity deletar(@PathVariable Long id){
         return produtoService.deletar(id);
     }

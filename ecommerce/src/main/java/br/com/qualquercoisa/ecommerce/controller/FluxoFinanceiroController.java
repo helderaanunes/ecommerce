@@ -20,8 +20,7 @@ public class FluxoFinanceiroController {
     @PostMapping("/fluxoFinanceiro")
 
     public ResponseEntity<FluxoFinanceiro> salvar (@RequestBody FluxoFinanceiro fluxoFinanceiro){
-        return fluxoFinanceiroService.salvar(fluxoFinanceiro);
-
+        return new ResponseEntity<FluxoFinanceiro>(fluxoFinanceiroService.salvar(fluxoFinanceiro),HttpStatus.OK) ;
     }
 
     @GetMapping("/fluxoFinanceiro")
@@ -31,7 +30,7 @@ public class FluxoFinanceiroController {
 
     @GetMapping("/fluxoFinanceiro/{id}")
     public ResponseEntity<FluxoFinanceiro> buscarPorId(@PathVariable Long id){
-        return fluxoFinanceiroService.buscarPorId(id);
+        return new ResponseEntity<FluxoFinanceiro>( fluxoFinanceiroService.buscarPorId(id).get(),HttpStatus.OK) ;
     }
 
     @DeleteMapping("/fluxoFinanceiro/{id}")
@@ -44,8 +43,7 @@ public class FluxoFinanceiroController {
             @PathVariable Long id,
             @RequestBody FluxoFinanceiro fluxoFinanceiro){
         fluxoFinanceiro.setId(id);
-        return fluxoFinanceiroService.salvar(fluxoFinanceiro);
-    }
+        return new ResponseEntity<FluxoFinanceiro>(fluxoFinanceiroService.salvar(fluxoFinanceiro),HttpStatus.OK) ;    }
 
 
 }

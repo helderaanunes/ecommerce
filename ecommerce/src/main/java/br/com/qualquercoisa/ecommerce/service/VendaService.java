@@ -1,7 +1,9 @@
 package br.com.qualquercoisa.ecommerce.service;
 
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
+import br.com.qualquercoisa.ecommerce.entity.Venda;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
+import br.com.qualquercoisa.ecommerce.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +18,9 @@ public class VendaService {
     @Autowired
     private VendaRepository vendaRepository;
 
-    public ResponseEntity<List<Venda>> listarTodos(){
-        List<Venda> vendas = vendaRepository.findAll();
-        return new ResponseEntity<>(vendas, HttpStatus.OK);
+    public Iterable<Venda> listarTodos(){
+        Iterable<Venda> vendas = vendaRepository.findAll();
+        return vendas;
     }
 
     public ResponseEntity<Venda> salvar(Venda venda){
@@ -26,9 +28,9 @@ public class VendaService {
         return new ResponseEntity<>(novaVenda, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<Venda> buscarPorId(Long Id){
-        Venda venda = vendaRepository.findById(id).orEkseThorow();
-        return new ResponseEntity<>(venda, HttpStatus.OK)
+    public ResponseEntity<Venda> buscarPorId(Long id){
+        Venda venda = vendaRepository.findById(id).get();
+        return new ResponseEntity<>(venda, HttpStatus.OK);
     }
 
     public ResponseEntity<Venda> atualizar(Long id, Venda vendaAtualizada){
@@ -44,6 +46,6 @@ public class VendaService {
 
     public ResponseEntity<String> deletar(Long id){
         vendaRepository.deleteById(id);
-        return new ResponseEntity<>("{\"mensagem\":\"Venda removida com sucesso\"}", HttpStatus.OK)
+        return new ResponseEntity<>("{\"mensagem\":\"Venda removida com sucesso\"}", HttpStatus.OK);
     }
 }

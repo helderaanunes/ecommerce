@@ -32,7 +32,7 @@ public class ProdutoFornecedorService {
         Optional<ProdutoFornecedor> produtoFornecedorExistente = produtoFornecedorRepository.findById(id);
         if (produtoFornecedorExistente.isPresent()) {
             ProdutoFornecedor produtoFornecedor = produtoFornecedorExistente.get();
-            produtoFornecedor.setFornecedor(produtoFornecedorAtualizado.getFornecedor());
+           // produtoFornecedor.setFornecedor(produtoFornecedorAtualizado.getFornecedor());
             produtoFornecedor.setProduto(produtoFornecedorAtualizado.getProduto());
             produtoFornecedor.setPrecoProduto(produtoFornecedorAtualizado.getPrecoProduto());
             return produtoFornecedorRepository.save(produtoFornecedor);
