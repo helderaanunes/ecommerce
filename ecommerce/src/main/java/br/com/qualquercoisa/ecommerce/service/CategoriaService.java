@@ -2,6 +2,7 @@ package br.com.qualquercoisa.ecommerce.service;
 
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,11 @@ public class CategoriaService {
         return new ResponseEntity<Categoria>(categoriaRepository.findById(id).orElseThrow(),HttpStatus.OK);
     }
 
-    public ResponseEntity deletar(Long id) {
-        categoriaRepository.deleteById(id);
-        return new ResponseEntity("{\"mensagem\":\"Removido com sucesso\"}",HttpStatus.OK);
+    @Transactional
+    public void deletar(Long id) {
+        // Buscar a categoria que deseja deletar
+
+
+        return new ResponseEntity<Categoria>(categoria, HttpStatus.OK);
     }
 }

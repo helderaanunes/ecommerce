@@ -14,4 +14,8 @@ public class Categoria {
     private String nome;
     @ManyToOne
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Categoria> subcategorias;
+
 }
