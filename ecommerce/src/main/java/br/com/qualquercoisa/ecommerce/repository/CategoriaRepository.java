@@ -3,6 +3,7 @@ package br.com.qualquercoisa.ecommerce.repository;
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +15,8 @@ public interface CategoriaRepository  extends CrudRepository<Categoria, Long> {
             " where categoria.id = {idCategoria}")
     public List<Categoria> pegarSubCategorias(Long idCategoria);
 
+
+    @Query("SELECT c FROM Categoria c WHERE c.categoria.id = :parentId")
+    List<Categoria> findSubcategoriasByParentId(@Param("parentId") Long parentId);
 
 }
