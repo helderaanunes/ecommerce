@@ -2,14 +2,15 @@ package br.com.qualquercoisa.ecommerce.service;
 
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -20,8 +21,17 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public ResponseEntity<Categoria> salvar (Categoria categoria){
-        return new ResponseEntity<Categoria>(categoriaRepository.save(categoria), HttpStatus.OK);
+
+
+    public ResponseEntity<Categoria> salvar(Categoria categoria) {
+        if (categoria.getCategoria() != null && categoria.getCategoria().getId() != null) {
+            Optional<Categoria> categoriaPai = categoriaRepository.findById(categoria.getCategoria().getId());
+            categoriaPai.ifPresent(categoria::setCategoria);
+        }
+        else{
+            categoria.setCategoria(null);
+        }
+        return new ResponseEntity<Categoria>(categoriaRepository.save(categoria), HttpStatus.CREATED);
     }
 
     public ResponseEntity<Categoria> buscarPorId(Long id) {
@@ -30,9 +40,18 @@ public class CategoriaService {
 
     @Transactional
     public void deletar(Long id) {
-        // Buscar a categoria que deseja deletar
+        Categoria categoria = categoriaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada com o ID " + id));
+        removerSubcategorias(categoria);
+        categoriaRepository.delete(categoria);
+    }
 
-
-        return new ResponseEntity<Categoria>(categoria, HttpStatus.OK);
+    private void removerSubcategorias(Categoria categoria) {
+        List<Categoria> subcategorias = categoriaRepository.findSubcategoriasByParentId(categoria.getId());
+        for (Categoria subcategoria : subcategorias) {
+            removerSubcategorias(subcategoria);
+        }
+        // Após remover todas as subcategorias, exclui a categoria atual
+        categoriaRepository.delete(categoria);
     }
 }
