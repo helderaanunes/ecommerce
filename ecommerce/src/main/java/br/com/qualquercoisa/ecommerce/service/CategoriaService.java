@@ -1,5 +1,6 @@
 package br.com.qualquercoisa.ecommerce.service;
 
+import br.com.qualquercoisa.ecommerce.dto.CategoriaDTO;
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,7 +22,9 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-
+    public List<CategoriaDTO> getCategoriasContandoSubCategoria() {
+        return categoriaRepository.getCategoriasContandoSubCategoria();
+    }
 
     public ResponseEntity<Categoria> salvar(Categoria categoria) {
         if (categoria.getCategoria() != null && categoria.getCategoria().getId() != null) {

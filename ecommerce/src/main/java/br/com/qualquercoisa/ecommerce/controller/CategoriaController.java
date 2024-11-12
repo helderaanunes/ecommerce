@@ -1,5 +1,6 @@
 package br.com.qualquercoisa.ecommerce.controller;
 
+import br.com.qualquercoisa.ecommerce.dto.CategoriaDTO;
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
 import br.com.qualquercoisa.ecommerce.service.CategoriaService;
@@ -8,12 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategoriaController {
 
     @Autowired
     private CategoriaService categoriaService;
+
+    @GetMapping("/subcategorias/contar")
+    public List<CategoriaDTO> getCategoriasContandoSubCategoria() {
+        return categoriaService.getCategoriasContandoSubCategoria();
+    }
 
     @PostMapping("/categoria")
     public ResponseEntity<Categoria> salvar (@RequestBody Categoria categoria){

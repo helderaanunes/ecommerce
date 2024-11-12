@@ -1,5 +1,6 @@
 package br.com.qualquercoisa.ecommerce.repository;
 
+import br.com.qualquercoisa.ecommerce.dto.CategoriaDTO;
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,4 +20,7 @@ public interface CategoriaRepository  extends CrudRepository<Categoria, Long> {
     @Query("SELECT c FROM Categoria c WHERE c.categoria.id = :parentId")
     List<Categoria> findSubcategoriasByParentId(@Param("parentId") Long parentId);
 
+    @Query("SELECT new br.com.qualquercoisa.ecommerce.dto.CategoriaDTO(c.nome, COUNT(sc)) " +
+            "FROM Categoria c LEFT JOIN c.categoria sc GROUP BY c.nome")
+    List<CategoriaDTO> getCategoriasContandoSubCategoria();
 }
