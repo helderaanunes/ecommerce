@@ -12,6 +12,7 @@ public class Cartao {
     private String numeroCartao;
     private String validade;
     private String nome;
+    private String cvc;
     @ManyToOne
     private Cliente cliente;
 }
