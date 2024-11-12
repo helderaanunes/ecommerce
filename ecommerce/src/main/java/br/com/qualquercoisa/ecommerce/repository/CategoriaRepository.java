@@ -20,7 +20,8 @@ public interface CategoriaRepository  extends CrudRepository<Categoria, Long> {
     @Query("SELECT c FROM Categoria c WHERE c.categoria.id = :parentId")
     List<Categoria> findSubcategoriasByParentId(@Param("parentId") Long parentId);
 
-    @Query("SELECT new br.com.qualquercoisa.ecommerce.dto.CategoriaDTO(c.nome, COUNT(sc)) " +
-            "FROM Categoria c LEFT JOIN c.categoria sc GROUP BY c.nome")
+    @Query("SELECT new br.com.qualquercoisa.ecommerce.dto.CategoriaDTO" +
+            "(cp.nome, COUNT(cs.nome)) " +
+            "FROM Categoria cs join cs.categoria cp GROUP BY cp.nome")
     List<CategoriaDTO> getCategoriasContandoSubCategoria();
 }
