@@ -28,6 +28,10 @@ public class VendaService {
         return new ResponseEntity<>(novaVenda, HttpStatus.CREATED);
     }
 
+    public ResponseEntity<Venda> vendaAdd(Venda venda) {
+        return salvar(venda);
+    }
+
     public ResponseEntity<Venda> buscarPorId(Long id){
         Venda venda = vendaRepository.findById(id).get();
         return new ResponseEntity<>(venda, HttpStatus.OK);

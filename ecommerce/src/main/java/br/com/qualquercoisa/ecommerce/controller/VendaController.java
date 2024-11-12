@@ -21,6 +21,9 @@ public class VendaController {
         return  vendaService.salvar(venda);
     }
 
+    @PostMapping("/venda/add")
+    public ResponseEntity<Venda> addVenda(@RequestBody Venda venda) { return vendaService.vendaAdd(venda); }
+
     @GetMapping("/venda")
     public Iterable<Venda> listarTodos(){
         return vendaService.listarTodos();
