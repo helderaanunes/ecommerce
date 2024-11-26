@@ -4,9 +4,11 @@ import br.com.qualquercoisa.ecommerce.dto.CategoriaDTO;
 import br.com.qualquercoisa.ecommerce.entity.Categoria;
 import br.com.qualquercoisa.ecommerce.repository.CategoriaRepository;
 import br.com.qualquercoisa.ecommerce.service.CategoriaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,11 @@ public class CategoriaController {
     }
 
     @PostMapping("/categoria")
-    public ResponseEntity<Categoria> salvar (@RequestBody Categoria categoria){
+    public ResponseEntity<?> salvar (@Valid @RequestBody Categoria categoria, BindingResult result){
+        if (result.hasErrors()) {
+            // Retorna os erros de validação
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
         return categoriaService.salvar(categoria);
     }
 
